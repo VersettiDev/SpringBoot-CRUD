@@ -19,6 +19,16 @@ public class ProductController {
     @Autowired
     ProductRepository repository;
 
+    @GetMapping("/{id}")
+    public ResponseEntity getProductById (@PathVariable(name = "id") Long id) {
+        Optional<Product> product = repository.findById(id);
+        if (product.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product with ID ( " + id + " ) not found");
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(product.get());
+    }
+
     @GetMapping
     public ResponseEntity getAllProducts () {
         List<Product> listProducts = repository.findAll();
