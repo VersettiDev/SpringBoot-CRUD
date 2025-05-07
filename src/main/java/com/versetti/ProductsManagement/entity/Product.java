@@ -1,4 +1,4 @@
-package entity;
+package com.versetti.ProductsManagement.entity;
 
 import jakarta.persistence.*;
 
