@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("v1/products")
@@ -30,5 +31,16 @@ public class ProductController {
         BeanUtils.copyProperties(dto, newProduct);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(newProduct));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteProductById (@PathVariable(name = "id") Long id) {
+        Optional<Product> product = repository.findById(id);
+        if (product.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product with ID ( " + id + " ) not found");
+        }
+
+        repository.deleteById(id);
+        return ResponseEntity.status(HttpStatus.OK).body("Product with ID ( " + id + " ) deleted");
     }
 }
