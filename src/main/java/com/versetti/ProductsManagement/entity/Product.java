@@ -3,7 +3,7 @@ package com.versetti.ProductsManagement.entity;
 import jakarta.persistence.*;
 
 @Entity(name = "products")
-@Table(name = "tb_products")
+@Table(name = "tb_product")
 public class Product {
 
     @Id
