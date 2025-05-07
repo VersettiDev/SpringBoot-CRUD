@@ -1,0 +1,10 @@
+CREATE TABLE tb_products (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT DEFAULT "SEM DESCRIÇÃO",
+    stock INT NOT NULL,
+    price BIGINT NOT NULL,
+
+    created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+    updated_at TIMESTAMP WITHOUT TIME ZONE
+)
